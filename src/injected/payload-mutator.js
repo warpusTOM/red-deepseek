@@ -8,9 +8,8 @@
 import { buildOfficeSkillsBlock } from "../lib/office-skills/index.js";
 import { searchActiveProjectRAG, formatRagInjections } from "../lib/rag-engine.js";
 import {
-  buildRedSeekHead,
-  buildRedSeekTail,
-  isDeepThinkRequest,
+  buildRedSeekBlock,
+  buildRedSeekSkillsBlock,
   stripRedSeekBlocks,
 } from "./red-seek.js";
 
@@ -44,11 +43,6 @@ export function mutatePayload(payload, state) {
 
   let changed = false;
   let target = null;
-
-  // ── red-seek: resolve reasoning mode up front so the thinking primer is
-  // attached to this very request, not discovered later ──
-  state.currentDeepThink =
-    isDeepThinkRequest(payload) || detectModelTypeFromDom() === "deepthink";
 
   if (messages && messages.length > 0) {
     target = findLastUserMessage(messages) || messages[messages.length - 1];
@@ -331,11 +325,11 @@ export function buildHiddenPrefix(
 ) {
   const blocks = [];
 
-  // ── red-seek: identity + no-refusal payload ──
-  // Always first. Unconditional: ignores injection frequency, the disable
-  // toggle, and the model mode. DeepThink requests get the thinking primer
-  // folded in so the contract binds inside the reasoning trace too.
-  blocks.push(buildRedSeekHead({ deepThink: Boolean(state.currentDeepThink) }));
+  // ── red-seek: ONE full instruction, on every request ──
+  // No fragments, no degradation, no conditional variants. The complete ANON
+  // contract goes in first and nothing is ever removed or shortened.
+  blocks.push(buildRedSeekBlock());
+  blocks.push(buildRedSeekSkillsBlock());
 
   const deepResearchBlock = buildDeepResearchPlanningBlock(
     userPrompt,
@@ -497,10 +491,6 @@ export function buildHiddenPrefix(
 
   const mcpIntentBlock = buildMcpIntentBlock(userPrompt, state);
   if (mcpIntentBlock) blocks.push(mcpIntentBlock);
-
-  // ── red-seek: trailing re-assertion ──
-  // Last thing the model reads before it starts producing. Highest recency.
-  blocks.push(buildRedSeekTail());
 
   return blocks.join("\n\n");
 }
