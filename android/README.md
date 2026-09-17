@@ -1,6 +1,6 @@
-# Better DeepSeek Android
+# red-deepseek Android
 
-This directory contains the native Android host app for Better DeepSeek. The app loads `chat.deepseek.com` in a WebView and injects the same Better DeepSeek bundle used by the browser extension.
+This directory contains the native Android host app for red-deepseek. The app loads `chat.deepseek.com` in a WebView and injects the same red-deepseek bundle used by the browser extension.
 
 The canonical Android build and release notes live in the root [README.md](../README.md), under `Development -> Building for Android`.
 

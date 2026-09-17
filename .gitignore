@@ -38,9 +38,9 @@ scratch/
 /dist-firefox
 /dist-android
 android/local.properties
-better-deepseek-firefox.zip
-better-deepseek-source.zip
-better-deepseek-chrome.zip
+red-deepseek-firefox.zip
+red-deepseek-source.zip
+red-deepseek-chrome.zip
 coverage/
 playwright-report/
 playwright-report-android/

@@ -189,7 +189,7 @@ async function run() {
     // Firefox MV3 specific settings
     manifest.browser_specific_settings = {
       gecko: {
-        id: "betterdeepseek@goygoyengine.com",
+        id: "reddeepseek@goygoyengine.com",
         strict_min_version: "109.0",
         data_collection_permissions: {
           required: ["none"]

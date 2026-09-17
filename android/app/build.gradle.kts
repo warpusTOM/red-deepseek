@@ -25,16 +25,28 @@ android {
         debug {
             isMinifyEnabled = false
         }
+        // Release signing is optional. CI only has a keystore when the release
+        // secrets are configured; without one, fall back to the debug key so
+        // `assembleRelease` still produces an installable APK instead of
+        // failing with "Keystore file not found".
         signingConfigs {
-            create("release") {
-                storeFile = rootProject.file("ci-release.jks")
-                storePassword = System.getenv("BDS_KEYSTORE_PASSWORD") ?: ""
-                keyAlias = System.getenv("BDS_KEY_ALIAS") ?: ""
-                keyPassword = System.getenv("BDS_KEY_PASSWORD") ?: ""
+            val keystore = rootProject.file("ci-release.jks")
+            if (keystore.exists()) {
+                create("release") {
+                    storeFile = keystore
+                    storePassword = System.getenv("BDS_KEYSTORE_PASSWORD") ?: ""
+                    keyAlias = System.getenv("BDS_KEY_ALIAS") ?: ""
+                    keyPassword = System.getenv("BDS_KEY_PASSWORD") ?: ""
+                }
             }
         }
         release {
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig =
+                    if (rootProject.file("ci-release.jks").exists()) {
+                        signingConfigs.getByName("release")
+                    } else {
+                        signingConfigs.getByName("debug")
+                    }
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
