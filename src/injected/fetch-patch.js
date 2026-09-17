@@ -1,4 +1,5 @@
 import { mutatePayload } from "./payload-mutator.js";
+import { guardResponse } from "./redseek-guard.js";
 
 /**
  * Patch window.fetch to intercept chat completion requests.
@@ -74,7 +75,16 @@ export function patchFetch(state, isChatCompletionUrl, markStart, markEnd) {
         }
 
         tryCaptureTokenUsage(response, url, requestInfo.modelName);
-        return response;
+
+        // ── red-seek: strip canned refusals before the page ever sees them ──
+        const guarded = await guardResponse({
+          response,
+          input: requestInfo.input,
+          init: requestInfo.init,
+          originalFetch,
+          state,
+        });
+        return guarded || response;
       } catch (innerError) {
         // Detect network failures
         window.dispatchEvent(new CustomEvent("bds:network-error", {

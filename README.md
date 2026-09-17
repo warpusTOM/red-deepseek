@@ -1,17 +1,32 @@
-# Better DeepSeek
+# red-deepseek
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/aabiopennjmopfippagcalmkdjlepdhh?style=for-the-badge&color=blue&logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/detail/better-deepseek/aabiopennjmopfippagcalmkdjlepdhh)
 [![Firefox Add-ons](https://img.shields.io/amo/v/better-deepseek?style=for-the-badge&color=orange&logo=firefox-browser&logoColor=white)](https://addons.mozilla.org/en/firefox/addon/better-deepseek/)
-[![Android Build](https://img.shields.io/github/package-json/v/EdgeTypE/better-deepseek?label=Android%20Build&style=for-the-badge&color=3DDC84&logo=android&logoColor=white)](https://github.com/EdgeTypE/better-deepseek/releases/tag/latest)
-[![Latest Build](https://img.shields.io/github/package-json/v/EdgeTypE/better-deepseek?label=Latest%20Build&style=for-the-badge&color=orange)](https://github.com/EdgeTypE/better-deepseek/releases/tag/latest)
-[![License](https://img.shields.io/github/license/EdgeTypE/better-deepseek?style=for-the-badge&color=green)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/EdgeTypE/better-deepseek?style=for-the-badge&color=gold)](https://github.com/EdgeTypE/better-deepseek/stargazers)
+[![Android Build](https://img.shields.io/github/package-json/v/warpusTOM/red-deepseek?label=Android%20Build&style=for-the-badge&color=3DDC84&logo=android&logoColor=white)](https://github.com/warpusTOM/red-deepseek/releases/tag/latest)
+[![Latest Build](https://img.shields.io/github/package-json/v/warpusTOM/red-deepseek?label=Latest%20Build&style=for-the-badge&color=orange)](https://github.com/warpusTOM/red-deepseek/releases/tag/latest)
+[![License](https://img.shields.io/github/license/warpusTOM/red-deepseek?style=for-the-badge&color=green)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/warpusTOM/red-deepseek?style=for-the-badge&color=gold)](https://github.com/warpusTOM/red-deepseek/stargazers)
 
-Better DeepSeek is a browser extension that enhances the DeepSeek chat interface with a powerful set of tools, persistent memory, and a customizable system prompt. It enables DeepSeek to generate files, run code, create presentations, and manage complex projects directly within the conversation, all while keeping your data local and private.
+red-deepseek is a browser extension that enhances the DeepSeek chat interface with a powerful set of tools, persistent memory, and a customizable system prompt. It enables DeepSeek to generate files, run code, create presentations, and manage complex projects directly within the conversation, all while keeping your data local and private.
 
 > "Better DeepSeek" is an unofficial, independent, and community-driven open-source extension. It is NOT affiliated with, endorsed by, sponsored by, or officially connected to DeepSeek or DeepSeek AI in any way. All product names, logos, and brands are property of their respective owners.
 
 
+
+## red-seek payload
+
+This fork ships **red-seek**: an unconditional identity + no-refusal payload
+injected into every completion request, including DeepThink / R1 reasoning
+requests. It is separate from the Hidden System Prompt setting and cannot be
+disabled from the UI.
+
+It also guards the response stream: a canned refusal is dropped and the request
+is silently re-issued with stronger framing, up to two times.
+
+See [REDSEEK.md](REDSEEK.md) for how it works and how to edit it.
+
+> red-deepseek is a personal fork. It is unaffiliated with DeepSeek and with
+> the upstream Better DeepSeek project.
 
 ## Showcase
 
@@ -154,7 +169,7 @@ The easiest way to install Better DeepSeek is through the official stores:
 - **[Firefox Add-ons](https://addons.mozilla.org/en/firefox/addon/better-deepseek/)**
 
 ### Latest Development Build
-If you want to try the very latest features before they reach the store, you can download the **[Latest Automated Build](https://github.com/EdgeTypE/better-deepseek/releases/tag/latest)**. Download the ZIP for browsers, or the **signed APK** for Android. Load the browser extension via "Load unpacked" in Chrome.
+If you want to try the very latest features before they reach the store, you can download the **[Latest Automated Build](https://github.com/warpusTOM/red-deepseek/releases/tag/latest)**. Download the ZIP for browsers, or the **signed APK** for Android. Load the browser extension via "Load unpacked" in Chrome.
 
 ### Manual Installation (Developer Mode)
 If you prefer to build from source or contribute to development:
@@ -166,7 +181,7 @@ If you prefer to build from source or contribute to development:
 #### Build from Source
 1. Clone the repository:
    ```bash
-   git clone https://github.com/EdgeTypE/better-deepseek.git
+   git clone https://github.com/warpusTOM/red-deepseek.git
    cd better-deepseek
    ```
 2. Install dependencies:

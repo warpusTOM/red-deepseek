@@ -38,14 +38,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="false"
-        android:theme="@style/Theme.BetterDeepSeek">
+        android:theme="@style/Theme.RedDeepSeek">
+
+        <!-- red-deepseek: Safe Browsing is off. The classifier can block or
+             warn on navigations it dislikes, which drops the chat session
+             mid-flow. The only host this WebView loads is chat.deepseek.com. -->
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|smallestScreenSize|uiMode|density|fontScale"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.BetterDeepSeek.NoActionBar">
+            android:theme="@style/Theme.RedDeepSeek.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -239,7 +239,7 @@ async function run() {
   }
 
   // ── Create ZIP Archive ──
-  console.log(`\n📦 Creating ZIP archive: better-deepseek-${target}.zip...`);
+  console.log(`\n📦 Creating ZIP archive: red-deepseek-${target}.zip...`);
   try {
     const zipData = {};
     
@@ -259,8 +259,8 @@ async function run() {
 
     addDirToZipSync(distDir);
     const zipped = zipSync(zipData);
-    writeFileSync(resolve(__dirname, `better-deepseek-${target}.zip`), zipped);
-    console.log(`✅ ZIP created successfully: better-deepseek-${target}.zip\n`);
+    writeFileSync(resolve(__dirname, `red-deepseek-${target}.zip`), zipped);
+    console.log(`✅ ZIP created successfully: red-deepseek-${target}.zip\n`);
   } catch (e) {
     console.error("❌ ZIP creation failed:", e.message);
   }
@@ -305,8 +305,8 @@ async function generateSourceZip() {
     }
 
     const zipped = zipSync(zipData);
-    writeFileSync(resolve(__dirname, "better-deepseek-source.zip"), zipped);
-    console.log("✅ Source code ZIP created successfully: better-deepseek-source.zip\n");
+    writeFileSync(resolve(__dirname, "red-deepseek-source.zip"), zipped);
+    console.log("✅ Source code ZIP created successfully: red-deepseek-source.zip\n");
     console.log("Submit this file to Mozilla as requested in the 'Source Code' section.");
   } catch (e) {
     console.error("❌ Source ZIP creation failed:", e.message);

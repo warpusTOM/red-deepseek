@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.betterdeepseek.app"
+    namespace = "com.reddeepseek.app"
     compileSdk = 34
 
     buildFeatures {
@@ -12,12 +12,12 @@ android {
     }
     
     defaultConfig {
-        applicationId = "com.betterdeepseek.app"
+        applicationId = "com.reddeepseek.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 9
+        versionCode = 10
         // Keep in sync with package.json "version" and static/manifest.json "version".
-        versionName = "0.1.13"
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

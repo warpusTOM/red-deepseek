@@ -1,4 +1,4 @@
-package com.betterdeepseek.app
+package com.reddeepseek.app
 
 import android.graphics.Color
 import android.view.WindowManager

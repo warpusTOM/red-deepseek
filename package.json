@@ -1,6 +1,6 @@
 {
-  "name": "better-deepseek",
-  "version": "0.1.13",
+  "name": "red-deepseek",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {

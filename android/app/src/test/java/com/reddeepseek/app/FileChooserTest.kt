@@ -1,4 +1,4 @@
-package com.betterdeepseek.app
+package com.reddeepseek.app
 
 import android.app.Activity
 import android.content.ClipData

@@ -55,3 +55,6 @@ FABLE.md
 # Ignore local development files
 .vscode/
 .idea/
+
+# Auto-populated by `npm run build:android`
+android/app/src/main/assets/bds/

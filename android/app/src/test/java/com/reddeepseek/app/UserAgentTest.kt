@@ -1,4 +1,4 @@
-package com.betterdeepseek.app
+package com.reddeepseek.app
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -26,7 +26,7 @@ class UserAgentTest {
         assertTrue(derived.contains("Pixel 7 Build/AD1A.240905.004"))
         assertFalse(derived.contains("; wv"))
         assertFalse(derived.contains("Version/4.0"))
-        assertFalse(derived.contains("BetterDeepSeek"))
+        assertFalse(derived.contains("RedDeepSeek"))
         assertFalse(derived.contains("  "))
         assertFalse(derived.contains("; )"))
         assertFalse(derived.contains(";)"))

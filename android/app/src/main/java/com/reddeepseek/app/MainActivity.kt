@@ -1,4 +1,4 @@
-package com.betterdeepseek.app
+package com.reddeepseek.app
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -430,6 +430,15 @@ class MainActivity : ComponentActivity() {
             userAgentString = derivedUa
             setSupportMultipleWindows(true)
             javaScriptCanOpenWindowsAutomatically = true
+            // red-deepseek: no content restrictions inside the host WebView.
+            // Safe Browsing can warn on or refuse navigations it dislikes, which
+            // breaks the chat session mid-flow. Only chat.deepseek.com is loaded.
+            safeBrowsingEnabled = false
+            allowContentAccess = true
+            allowFileAccess = true
+            setSupportZoom(true)
+            builtInZoomControls = true
+            displayZoomControls = false
         }
         configureWebViewCookiePolicy(webView)
         configureWebViewFingerprint(webView, derivedUa)
@@ -719,6 +728,34 @@ class MainActivity : ComponentActivity() {
         // startThemeWatcher(), which persists pageIsDark via chrome.storage and fires
         // AndroidBridge.reportTheme() for the live native bar-icon colour update.
         view.evaluateJavascript(content, null)
+        verifyRedSeekPatch(view)
+    }
+
+    /**
+     * Confirm the MAIN-world fetch/XHR patch actually landed.
+     *
+     * If window.fetch is still the native implementation, nothing was injected and the
+     * red-seek payload never reaches the model. Detect it rather than fail silently.
+     */
+    private fun verifyRedSeekPatch(view: WebView) {
+        view.evaluateJavascript(
+                """
+            (function () {
+                try {
+                    var src = String(window.fetch || '');
+                    var patched = src.indexOf('native code') === -1;
+                    window.__redSeekActive = patched;
+                    if (!patched) {
+                        console.warn('[REDSEEK] fetch patch NOT detected - payload inactive');
+                    }
+                } catch (e) {
+                    window.__redSeekActive = false;
+                }
+            })();
+        """
+                        .trimIndent(),
+                null
+        )
     }
 
     private fun readAsset(path: String): String? =

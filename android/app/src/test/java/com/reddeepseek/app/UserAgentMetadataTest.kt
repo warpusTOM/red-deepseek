@@ -1,4 +1,4 @@
-package com.betterdeepseek.app
+package com.reddeepseek.app
 
 import androidx.webkit.UserAgentMetadata
 import org.junit.Assert.assertEquals
